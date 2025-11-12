@@ -11,16 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pacientes")
-@CrossOrigin(
-        origins = {
-                "http://localhost:5173",
-                "http://localhost:5177",
-                "http://localhost:5178",
-                "http://localhost:5179"
-        },
-        methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS },
-        allowedHeaders = "*"
-)
+@CrossOrigin(origins = "*") // << aqui!
 public class PacienteController {
 
     private final PacienteService service;
@@ -35,7 +26,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public PacienteResponseDTO obter(@PathVariable Long id) {
+    public PacienteResponseDTO obter(@PathVariable("id") Long id) {
         return service.obter(id);
     }
 
@@ -46,13 +37,14 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public PacienteResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody PacienteRequestDTO dto) {
+    public PacienteResponseDTO atualizar(@PathVariable("id") Long id,
+                                         @Valid @RequestBody PacienteRequestDTO dto) {
         return service.atualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void remover(@PathVariable Long id) {
+    public void remover(@PathVariable("id") Long id) {
         service.remover(id);
     }
 }

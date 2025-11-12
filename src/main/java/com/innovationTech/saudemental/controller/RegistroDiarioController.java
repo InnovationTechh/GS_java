@@ -11,16 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/registros")
-@CrossOrigin(
-        origins = {
-                "http://localhost:5173",
-                "http://localhost:5177",
-                "http://localhost:5178",
-                "http://localhost:5179"
-        },
-        methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS },
-        allowedHeaders = "*"
-)
+@CrossOrigin(origins = "*") // << aqui!
 public class RegistroDiarioController {
 
     private final RegistroDiarioService service;
@@ -35,7 +26,7 @@ public class RegistroDiarioController {
     }
 
     @GetMapping("/{id}")
-    public RegistroDiarioResponseDTO obter(@PathVariable Long id) {
+    public RegistroDiarioResponseDTO obter(@PathVariable("id") Long id) {
         return service.obter(id);
     }
 
@@ -46,18 +37,19 @@ public class RegistroDiarioController {
     }
 
     @PutMapping("/{id}")
-    public RegistroDiarioResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody RegistroDiarioRequestDTO dto) {
+    public RegistroDiarioResponseDTO atualizar(@PathVariable("id") Long id,
+                                               @Valid @RequestBody RegistroDiarioRequestDTO dto) {
         return service.atualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void remover(@PathVariable Long id) {
+    public void remover(@PathVariable("id") Long id) {
         service.remover(id);
     }
 
     @GetMapping("/paciente/{pacienteId}")
-    public List<RegistroDiarioResponseDTO> listarPorPaciente(@PathVariable Long pacienteId) {
+    public List<RegistroDiarioResponseDTO> listarPorPaciente(@PathVariable("pacienteId") Long pacienteId) {
         return service.listarPorPaciente(pacienteId);
     }
 }
