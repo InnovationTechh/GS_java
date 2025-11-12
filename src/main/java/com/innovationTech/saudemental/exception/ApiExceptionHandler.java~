@@ -1,0 +1,4 @@
+package com.innovationTech.saudemental.exception;
+
+public class ApiExceptionHandler {
+}

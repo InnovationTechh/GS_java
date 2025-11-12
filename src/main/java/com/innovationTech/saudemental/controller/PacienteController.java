@@ -1,0 +1,58 @@
+package com.innovationTech.saudemental.controller;
+
+import com.innovationTech.saudemental.dto.paciente.PacienteRequestDTO;
+import com.innovationTech.saudemental.dto.paciente.PacienteResponseDTO;
+import com.innovationTech.saudemental.service.PacienteService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/pacientes")
+@CrossOrigin(
+        origins = {
+                "http://localhost:5173",
+                "http://localhost:5177",
+                "http://localhost:5178",
+                "http://localhost:5179"
+        },
+        methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS },
+        allowedHeaders = "*"
+)
+public class PacienteController {
+
+    private final PacienteService service;
+
+    public PacienteController(PacienteService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<PacienteResponseDTO> listar() {
+        return service.listar();
+    }
+
+    @GetMapping("/{id}")
+    public PacienteResponseDTO obter(@PathVariable Long id) {
+        return service.obter(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PacienteResponseDTO criar(@Valid @RequestBody PacienteRequestDTO dto) {
+        return service.criar(dto);
+    }
+
+    @PutMapping("/{id}")
+    public PacienteResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody PacienteRequestDTO dto) {
+        return service.atualizar(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long id) {
+        service.remover(id);
+    }
+}
