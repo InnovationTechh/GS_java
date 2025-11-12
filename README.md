@@ -69,10 +69,7 @@ Desenvolver uma **plataforma completa** para monitoramento da saúde mental, com
 | paciente | Paciente | Relacionamento @ManyToOne |
 
 ---
-
-## 🚀 Como Executar
-
-### ✅ Pré-requisitos
+## ✅ Pré-requisitos
 - [Java 17+](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)  
 - [Maven](https://maven.apache.org/download.cgi)  
 - [Node.js 18+](https://nodejs.org/)  
@@ -105,11 +102,10 @@ Desenvolver uma **plataforma completa** para monitoramento da saúde mental, com
 ### 👥 Integrantes do Grupo — InnovationTech
 | Nome | RM |
 |------|----|
-| Arthur Galvão Alves | RM554462 |
-| Felipe Braunstein e Silva | RM554483 |
 | Felipe do Nascimento Fernandes | RM554598 |
-| Henrique Ignacio Bartalo | RM555274 |
 | Gustavo Henrique Martins | RM556956 |
+| Henrique Ignacio Bartalo | RM555274 |
+
 
 
 ---
