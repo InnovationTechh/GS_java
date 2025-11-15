@@ -14,6 +14,9 @@ export default function Navbar(){
           <Link className={is("/")} to="/">Home</Link>
           <Link className={is("/pacientes")} to="/pacientes">Pacientes</Link>
           <Link className={is("/registros")} to="/registros">Registros</Link>
+          <Link className={is("/profissionais")} to="/profissionais">Profissionais</Link>
+          <Link className={is("/consultas")} to="/consultas">Consultas</Link>
+          <Link className={is("/recursos")} to="/recursos">Recursos</Link>
         </nav>
       </div>
     </header>

@@ -16,6 +16,9 @@ async function fetchJson(url, options) {
   return r.json();
 }
 
+// =======================
+// Pacientes
+// =======================
 export async function getPacientes() {
   return fetchJson(`${API}/pacientes`);
 }
@@ -40,6 +43,9 @@ export async function deletePaciente(id) {
   return fetchJson(`${API}/pacientes/${id}`, { method: 'DELETE' });
 }
 
+// =======================
+// Registros diários
+// =======================
 export async function getRegistros() {
   return fetchJson(`${API}/registros`);
 }
@@ -62,4 +68,95 @@ export async function updateRegistro(id, data) {
 
 export async function deleteRegistro(id) {
   return fetchJson(`${API}/registros/${id}`, { method: 'DELETE' });
+}
+
+// =======================
+// Profissionais de Saúde
+// =======================
+export async function getProfissionais() {
+  return fetchJson(`${API}/profissionais`);
+}
+
+export async function createProfissional(data) {
+  return fetchJson(`${API}/profissionais`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function updateProfissional(id, data) {
+  return fetchJson(`${API}/profissionais/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function deleteProfissional(id) {
+  return fetchJson(`${API}/profissionais/${id}`, { method: 'DELETE' });
+}
+
+// =======================
+// Consultas
+// =======================
+export async function getConsultas() {
+  return fetchJson(`${API}/consultas`);
+}
+
+export async function createConsulta(data) {
+  // data: { pacienteId, profissionalId, dataHora: '2025-11-15T14:30', tipoAtendimento: 'ONLINE' }
+  return fetchJson(`${API}/consultas`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function updateConsulta(id, data) {
+  // data com mesmo formato do create
+  return fetchJson(`${API}/consultas/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function updateConsultaStatus(id, status) {
+  return fetchJson(`${API}/consultas/${id}/status?status=${encodeURIComponent(status)}`, {
+    method: 'PATCH'
+  });
+}
+
+export async function deleteConsulta(id) {
+  return fetchJson(`${API}/consultas/${id}`, {
+    method: 'DELETE'
+  });
+}
+
+// =======================
+// Recursos de apoio
+// =======================
+export async function getRecursos() {
+  return fetchJson(`${API}/recursos`);
+}
+
+export async function createRecurso(data) {
+  return fetchJson(`${API}/recursos`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function updateRecurso(id, data) {
+  return fetchJson(`${API}/recursos/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+export async function deleteRecurso(id) {
+  return fetchJson(`${API}/recursos/${id}`, { method: 'DELETE' });
 }
